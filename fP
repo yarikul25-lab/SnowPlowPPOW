@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowplow Vernon Hills | Reliable Snow Removal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Theme Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a', /* slate-900 */
+                        cardBg: '#1e293b', /* slate-800 */
+                        safetyYellow: '#f59e0b', /* amber-500 */
+                        safetyOrange: '#ea580c', /* orange-600 */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hazard-stripes {
+            background: repeating-linear-gradient(
+                45deg,
+                #f59e0b,
+                #f59e0b 20px,
+                #1e293b 20px,
+                #1e293b 40px
+            );
+        }
+        
+        /* Modal animation classes */
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-200 min-h-screen flex flex-col antialiased selection:bg-safetyYellow selection:text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-darkBg/90 backdrop-blur-sm z-40 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">❄️</span>
+                <span class="font-extrabold text-xl tracking-tight text-white uppercase">Snowplow <span class="text-safetyYellow">Vernon Hills</span></span>
+            </div>
+            <div class="hidden md:flex gap-6 font-semibold text-sm">
+                <a href="#hero" class="hover:text-safetyYellow transition">Home</a>
+                <a href="#booking" class="hover:text-safetyYellow transition">Book Service</a>
+                <a href="#contact" class="hover:text-safetyYellow transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero Entrance -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-safetyYellow/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center z-10 space-y-8">
+            <!-- Guarantee Badge -->
+            <div class="inline-block hazard-stripes p-1 rounded-lg shadow-lg shadow-safetyYellow/20">
+                <div class="bg-darkBg px-6 py-2 rounded font-bold text-safetyYellow text-sm sm:text-base uppercase tracking-wider">
+                    Overnight Snow? We guarantee morning cleanup!
+                </div>
+            </div>
+
+            <h1 class="text-5xl sm:text-7xl font-black text-white leading-tight">
+                Clear Driveways.<br>
+                <span class="bg-gradient-to-r from-safetyYellow to-safetyOrange bg-clip-text text-transparent">Zero Hassle.</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-medium">
+                Professional, rapid snow plowing and de-icing for homes and businesses in Vernon Hills. Wake up to a clear path.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                <a href="#booking" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-safetyYellow to-safetyOrange hover:scale-105 transition-transform text-slate-900 font-extrabold rounded-xl shadow-lg shadow-safetyOrange/30 text-lg">
+                    Book Service Now
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-cardBg hover:bg-slate-700 border border-slate-600 transition-colors text-white font-bold rounded-xl text-lg">
+                    Have an issue? Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Registration & Booking -->
+    <section id="booking" class="py-24 bg-cardBg relative border-t border-b border-slate-800">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-white">Service Registration</h2>
+                <p class="text-slate-400 mt-3">Calculate your rate and book our crew instantly.</p>
+            </div>
+
+            <div class="bg-darkBg p-8 rounded-2xl shadow-xl border border-slate-700">
+                <form action="https://api.web3forms.com/submit" method="POST" id="booking-form" class="space-y-6">
+                    <!-- Web3Forms Mandatory Hidden Inputs -->
+                    <input type="hidden" name="access_key" value="96bd5c67-09b8-4c79-b4b6-d9e69b7b7a0e">
+                    <input type="hidden" name="subject" value="New Snowplow Booking Request - Vernon Hills">
+                    <!-- We will inject the calculated total into this hidden field before submit -->
+                    <input type="hidden" name="Total_Calculated_Price" id="form-total-price" value="">
+
+                    <!-- Personal Details -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="w-full bg-cardBg border border-slate-600 focus:border-safetyYellow rounded-lg px-4 py-3 text-white outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Email Address</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-cardBg border border-slate-600 focus:border-safetyYellow rounded-lg px-4 py-3 text-white outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">Street Address (Vernon Hills)</label>
+                        <input type="text" name="address" required placeholder="123 Winter Lane" class="w-full bg-cardBg border border-slate-600 focus:border-safetyYellow rounded-lg px-4 py-3 text-white outline-none transition">
+                    </div>
+
+                    <!-- Service Details (For Price Calculation) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-slate-800 pt-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Property Type</label>
+                            <select id="property-type" name="property_type" class="w-full bg-cardBg border border-slate-600 focus:border-safetyYellow rounded-lg px-4 py-3 text-white outline-none appearance-none cursor-pointer">
+                                <option value="20">Personal Home (+$20)</option>
+                                <option value="30">Business (+$30)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Service Type</label>
+                            <select id="service-type" name="service_type" class="w-full bg-cardBg border border-slate-600 focus:border-safetyYellow rounded-lg px-4 py-3 text-white outline-none appearance-none cursor-pointer">
+                                <option value="30">Driveway Plowing (+$30)</option>
+                                <option value="30">Sidewalk/Walkway Shoveling (+$30)</option>
+                                <option value="30">Salting/De-Icing (+$30)</option>
+                                <option value="30">Full Coverage (+$30)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full mt-6 py-4 bg-safetyYellow hover:bg-safetyOrange text-slate-900 font-extrabold rounded-xl shadow-lg transition-colors text-lg">
+                        Calculate & Book
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popup for Pricing -->
+    <div id="price-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-cardBg border border-slate-600 rounded-2xl w-full max-w-md p-6 shadow-2xl modal-enter" id="modal-content">
+            <h3 class="text-2xl font-black text-white mb-4 border-b border-slate-700 pb-4">Quote Summary</h3>
+            
+            <div class="space-y-3 mb-8">
+                <div class="flex justify-between text-slate-300">
+                    <span id="display-prop-name">Property Base</span>
+                    <span id="display-prop-price" class="font-bold text-white"></span>
+                </div>
+                <div class="flex justify-between text-slate-300">
+                    <span id="display-service-name">Service</span>
+                    <span id="display-service-price" class="font-bold text-white"></span>
+                </div>
+                <div class="border-t border-slate-700 pt-3 mt-3 flex justify-between items-center">
+                    <span class="text-lg font-bold text-white">Total Estimated Price</span>
+                    <span id="calculated-price" class="text-3xl font-black text-safetyYellow"></span>
+                </div>
+                <p class="text-xs text-slate-500 mt-2 text-center">Clicking confirm will send your request to our team.</p>
+            </div>
+
+            <div class="flex gap-3">
+                <button type="button" id="close-modal" class="w-1/2 py-3 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl transition-colors">
+                    Edit Details
+                </button>
+                <button type="button" id="confirm-submit-btn" class="w-1/2 py-3 bg-gradient-to-r from-safetyYellow to-safetyOrange text-slate-900 font-extrabold rounded-xl shadow-lg hover:opacity-90 transition-opacity">
+                    Confirm & Submit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Complaints & Contact -->
+    <section id="contact" class="py-24 relative bg-darkBg">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-black text-white">Feedback & Complaints</h2>
+                <p class="text-slate-400 mt-3">Direct access to management. We reply to all inquiries at <a href="mailto:yarikul25@gmail.com" class="text-safetyYellow hover:underline font-bold">yarikul25@gmail.com</a>.</p>
+            </div>
+
+            <div class="bg-cardBg p-8 rounded-2xl shadow-xl border border-slate-800">
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    <!-- Web3Forms Mandatory Hidden Inputs -->
+                    <input type="hidden" name="access_key" value="96bd5c67-09b8-4c79-b4b6-d9e69b7b7a0e">
+                    <input type="hidden" name="subject" value="Snowplow Vernon Hills - Feedback/Complaint">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Name</label>
+                            <input type="text" name="name" required class="w-full bg-darkBg border border-slate-700 focus:border-safetyOrange rounded-lg px-4 py-3 text-white outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full bg-darkBg border border-slate-700 focus:border-safetyOrange rounded-lg px-4 py-3 text-white outline-none transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">Your Message / Complaint</label>
+                        <textarea name="message" required rows="5" class="w-full bg-darkBg border border-slate-700 focus:border-safetyOrange rounded-lg px-4 py-3 text-white outline-none transition resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-slate-700 hover:bg-slate-600 border border-slate-500 text-white font-bold rounded-xl transition-colors text-lg flex items-center justify-center gap-2">
+                        Send Message <span>✉️</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cardBg py-8 text-center border-t border-slate-800">
+        <p class="text-slate-500 text-sm font-medium">© 2024 Snowplow Vernon Hills. Serving the local community safely.</p>
+    </footer>
+
+    <script>
+        const bookingForm = document.getElementById('booking-form');
+        const modal = document.getElementById('price-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal');
+        const confirmSubmitBtn = document.getElementById('confirm-submit-btn');
+
+        // Form fields and displays
+        const propSelect = document.getElementById('property-type');
+        const serviceSelect = document.getElementById('service-type');
+        const priceDisplay = document.getElementById('calculated-price');
+        const formTotalPriceInput = document.getElementById('form-total-price');
+
+        // Intercept Booking Form Submission
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop immediate submission to calculate price first
+
+            // Get selected options
+            const propOption = propSelect.options[propSelect.selectedIndex];
+            const serviceOption = serviceSelect.options[serviceSelect.selectedIndex];
+
+            const propValue = parseInt(propOption.value);
+            const serviceValue = parseInt(serviceOption.value);
+            const total = propValue + serviceValue;
+
+            // Populate Modal Text
+            document.getElementById('display-prop-name').textContent = propOption.text.split(' (+')[0];
+            document.getElementById('display-prop-price').textContent = '$' + propValue;
+            
+            document.getElementById('display-service-name').textContent = serviceOption.text.split(' (+')[0];
+            document.getElementById('display-service-price').textContent = '$' + serviceValue;
+            
+            const totalString = '$' + total;
+            priceDisplay.textContent = totalString;
+            
+            // Set the hidden field value so Yarikul gets the calculated price in the email
+            formTotalPriceInput.value = totalString;
+
+            // Show Modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger entry animation
+            setTimeout(() => {
+                modalContent.classList.add('modal-enter-active');
+            }, 10);
+        });
+
+        // Close Modal
+        closeModalBtn.addEventListener('click', function() {
+            modalContent.classList.remove('modal-enter-active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300); // Wait for transition
+        });
+
+        // Confirm & Programmatically Submit
+        confirmSubmitBtn.addEventListener('click', function() {
+            // Provide UI feedback that it is submitting
+            confirmSubmitBtn.textContent = 'Submitting...';
+            confirmSubmitBtn.disabled = true;
+            confirmSubmitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Using HTMLFormElement.prototype.submit bypasses the 'submit' event listener
+            // sending the data directly to Web3Forms.
+            bookingForm.submit();
+        });
+    </script>
+</body>
+</html>
