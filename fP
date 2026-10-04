@@ -52,7 +52,36 @@
         }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-amberSafety selection:text-slate-950 min-h-screen flex flex-col justify-between">
+<body 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us</title>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+
+  <!-- Paste Web3Forms code here -->
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="96bd5c67-09b8-4c79-b4b6-d9e69b7b7a0e">
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
+class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-amberSafety selection:text-slate-950 min-h-screen flex flex-col justify-between">
 
     <!-- Sticky Header Navigation -->
     <header class="sticky top-0 z-40 w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
